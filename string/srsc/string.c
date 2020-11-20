@@ -1,19 +1,24 @@
-#include "string.h"
-
-
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "string.h"
+
+
+/******************************** Internal Functions Declarations ********************************/
+/*************************************************************************************************/
 
 static void
 STRING__vExit(int32_t, const char *);
-
 static void *
 STRING__pvMalloc(uint32_t);
 
-
 static void
 STRING__vStringRealloc(STRING_tstString *const);
+
+
+/******************************** Internal Functions Definition **********************************/
+/*************************************************************************************************/
+
 
 static void
 STRING__vStringRealloc(STRING_tstString *const stString) {
@@ -46,6 +51,9 @@ STRING__pvMalloc(uint32_t u32Size) {
     
     return(pvAddress);
 }
+
+/******************************** Interface Functions Definitions ********************************/
+/*************************************************************************************************/
 
 STRING_tstString *
 STRING_stStringMake(void) {
