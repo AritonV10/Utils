@@ -104,7 +104,7 @@ STRING_stStringMakeWith(const char *pchString) {
 }
 
 int8_t
-STRING_i8StringAddChar(const char chChar, STRING_tstString *stString) {
+STRING_i8StringAddChar(const char chChar, STRING_tstString *const stString) {
     
     /* Check if we can add the character */
     if((stString->u32Index + 1) == stString->u32Size) {
@@ -123,7 +123,7 @@ STRING_i8StringAddChar(const char chChar, STRING_tstString *stString) {
 }
 
 int8_t
-STRING_i8StringAddCharAt(const char chChar, const uint32_t u32Position, STRING_tstString *stString) {
+STRING_i8StringAddCharAt(const char chChar, const uint32_t u32Position, STRING_tstString *const stString) {
     
     char *pchHead;
     
@@ -147,7 +147,7 @@ STRING_i8StringAddCharAt(const char chChar, const uint32_t u32Position, STRING_t
 }
 
 int8_t
-STRING_i8StringRemoveChar(STRING_tstString *stString) {
+STRING_i8StringRemoveChar(STRING_tstString *const stString) {
     
     if(stString->u32Index == 0) {
         return(STRING__nFail);
@@ -161,7 +161,7 @@ STRING_i8StringRemoveChar(STRING_tstString *stString) {
 }
 
 int8_t
-STRING_i8StringRemoveCharAt(const uint32_t u32Position, STRING_tstString *stString) {
+STRING_i8StringRemoveCharAt(const uint32_t u32Position, STRING_tstString *const stString) {
     
     char *pchHead;
     
@@ -179,6 +179,6 @@ STRING_i8StringRemoveCharAt(const uint32_t u32Position, STRING_tstString *stStri
 }
 
 uint32_t
-STRING_u32StringLength(const STRING_tstString *stString) {
+STRING_u32StringLength(const STRING_tstString *const stString) {
     return((stString->pchBuffer + stString->u32Index) - stString->pchBuffer);
 }
