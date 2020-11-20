@@ -26,18 +26,18 @@ extern STRING_tstString *
 STRING_stStringMakeWith(const char *);
 
 extern int8_t
-STRING_i8StringAddChar(const char, STRING_tstString *);
+STRING_i8StringAddChar(const char, STRING_tstString *const);
 
 extern int8_t
-STRING_i8StringRemoveChar(STRING_tstString *);
+STRING_i8StringRemoveChar(STRING_tstString *const);
 
 extern int8_t
-STRING_i8StringAddCharAt(const char, const uint32_t, STRING_tstString *);
+STRING_i8StringAddCharAt(const char, const uint32_t, STRING_tstString *const);
 
 extern int8_t
-STRING_i8StringRemoveCharAt(const uint32_t, STRING_tstString *);
+STRING_i8StringRemoveCharAt(const uint32_t, STRING_tstString *const);
 
 extern uint32_t
-STRING_u32StringLength(const STRING_tstString *);
+STRING_u32StringLength(const STRING_tstString *const);
 
 #endif
