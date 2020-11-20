@@ -75,15 +75,32 @@ STRING_tstString *
 STRING_stStringMakeWith(const char *pchString) {
     
     uint32_t    u32StringLength;
+    char *pchTemp;
     const char *pchStr;
+    
+    
+    STRING_tstString *stString;
     
     pchStr = pchString;
     
-    for(u32StringLength; pchStr != 0; ++pchStr, ++u32StringLength)
+    for(u32StringLength; *pchStr != 0; ++pchStr, ++u32StringLength)
         ;
     
-    printf("%d", u32StringLength);
     
+    stString            = STRING__pvMalloc(sizeof(STRING_tstString));
+    stString->u32Size   = (STRING__nStringInitialSize + u32StringLength);
+    stString->u32Index  = u32StringLength;
+    stString->pchBuffer = STRING__pvMalloc(sizeof(char) * stString->u32Size);
+    
+    
+    
+    for(pchStr = pchString, pchTemp = stString->pchBuffer; pchTemp <= (stString->pchBuffer + (u32StringLength - 1)); ++pchTemp, ++pchStr) {
+        *pchTemp = *pchStr;
+    }
+    
+    stString->pchBuffer[stString->u32Index] = 0;
+    
+    return(stString);
 }
 
 int8_t
@@ -98,7 +115,7 @@ STRING_i8StringAddChar(const char chChar, STRING_tstString *stString) {
     stString->pchBuffer[stString->u32Index] = chChar;
     
     /* Increment the tail and set the terminator */
-    ++stString->u32Index;
+    stString->u32Index = stString->u32Index + 1;
     stString->pchBuffer[stString->u32Index] = 0;
     
     return(STRING__nOk);
