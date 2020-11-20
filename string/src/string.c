@@ -81,10 +81,9 @@ STRING_stStringMake(void) {
 STRING_tstString *
 STRING_stStringMakeWith(const char *pchString) {
     
-    uint32_t    u32StringLength;
-    char *pchTemp;
-    const char *pchStr;
-    
+    uint32_t         u32StringLength;
+    char             *pchTemp;
+    const char       *pchStr;
     
     STRING_tstString *stString;
     
