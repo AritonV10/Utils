@@ -4,6 +4,16 @@
 #include "string.h"
 
 
+#define STRING__vAlloc(InitLength, IndexPosition)                              \
+{                                                                              \
+    stString            = STRING__pvMalloc(sizeof(STRING_tstString));          \
+    stString->u32Size   = (STRING__nStringInitialSize + InitLength);           \
+    stString->u32Index  = IndexPosition;                                       \
+    stString->pchBuffer = STRING__pvMalloc(sizeof(char) * stString->u32Size);  \
+}                                                                              
+
+
+
 /******************************** Internal Functions Declarations ********************************/
 /*************************************************************************************************/
 
@@ -60,10 +70,7 @@ STRING_stStringMake(void) {
     
     STRING_tstString *stString;
     
-    stString            = STRING__pvMalloc(sizeof(STRING_tstString));
-    stString->u32Size   = STRING__nStringInitialSize;
-    stString->u32Index  = 0;
-    stString->pchBuffer = STRING__pvMalloc(sizeof(char) * stString->u32Size);
+    STRING__vAlloc(0, 0);
     
     stString->pchBuffer[0] = 0;
     
@@ -86,13 +93,7 @@ STRING_stStringMakeWith(const char *pchString) {
     for(u32StringLength; *pchStr != 0; ++pchStr, ++u32StringLength)
         ;
     
-    
-    stString            = STRING__pvMalloc(sizeof(STRING_tstString));
-    stString->u32Size   = (STRING__nStringInitialSize + u32StringLength);
-    stString->u32Index  = u32StringLength;
-    stString->pchBuffer = STRING__pvMalloc(sizeof(char) * stString->u32Size);
-    
-    
+    STRING__vAlloc(u32StringLength, u32StringLength);
     
     for(pchStr = pchString, pchTemp = stString->pchBuffer; pchTemp <= (stString->pchBuffer + (u32StringLength - 1)); ++pchTemp, ++pchStr) {
         *pchTemp = *pchStr;
